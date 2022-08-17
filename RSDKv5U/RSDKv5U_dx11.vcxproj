@@ -674,7 +674,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>RSDK_USE_DX11;RETRO_REVISION=3;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/windows/SDL2/include/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/;$(SolutionDir)RSDKv5/;$(ExecutablePath);$(DXSDK_DIR)Utilities\bin\x86;$(IncludePath);$(DXSDK_DIR)Include;$(LibraryPath);$(DXSDK_DIR)Lib\$(PlatformTargetAsMSBuildArchitecture);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/windows/SDL2/include/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/;$(SolutionDir)RSDKv5/;$(ExecutablePath);$(DXSDK_DIR)Utilities\bin\x86;$(IncludePath);$(DXSDK_DIR)Include;$(LibraryPath);$(DXSDK_DIR)Lib\$(PlatformTargetAsMSBuildArchitecture);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
