@@ -13,3 +13,6 @@
 [submodule "dependencies/windows/SDL2"]
 	path = dependencies/windows/SDL2
 	url = https://github.com/libsdl-org/SDL
+[submodule "dependencies/gl3/GLFW"]
+	path = dependencies/gl3/GLFW
+	url = https://github.com/glfw/glfw
