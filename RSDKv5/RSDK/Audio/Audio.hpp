@@ -69,8 +69,23 @@ void UpdateStreamBuffer(ChannelInfo *channel);
 void LoadStream(ChannelInfo *channel);
 int32 PlayStream(const char *filename, uint32 slot, int32 startPos, uint32 loopPoint, bool32 loadASync);
 
-void ReadSfx(char *filename, uint8 id, uint8 plays, uint8 scope, uint32 *size, uint32 *format, uint16 *channels, uint32 *freq);
+void LoadSfxToSlot(char *filename, uint8 slot, uint8 plays, uint8 scope);
 void LoadSfx(char *filePath, uint8 plays, uint8 scope);
+
+} // namespace RSDK
+
+#if RETRO_AUDIODEVICE_XAUDIO
+#include "XAudio/XAudioDevice.hpp"
+#elif RETRO_AUDIODEVICE_NX
+#include "NX/NXAudioDevice.hpp"
+#elif RETRO_AUDIODEVICE_SDL2
+#include "SDL2/SDL2AudioDevice.hpp"
+#elif RETRO_AUDIODEVICE_OBOE
+#include "Oboe/OboeAudioDevice.hpp"
+#endif
+
+namespace RSDK
+{
 
 inline uint16 GetSfx(const char *sfxName)
 {
@@ -87,6 +102,10 @@ inline uint16 GetSfx(const char *sfxName)
 int32 PlaySfx(uint16 sfx, uint32 loopPoint, uint32 priority);
 inline void StopSfx(int32 sfx)
 {
+#if !RETRO_USE_ORIGINAL_CODE
+    LockAudioDevice();
+#endif
+
     for (int32 i = 0; i < CHANNEL_COUNT; ++i) {
         if (channels[i].soundID == sfx) {
             MEM_ZERO(channels[i]);
@@ -94,11 +113,19 @@ inline void StopSfx(int32 sfx)
             channels[i].state   = CHANNEL_IDLE;
         }
     }
+
+#if !RETRO_USE_ORIGINAL_CODE
+    UnlockAudioDevice();
+#endif
 }
 
 #if RETRO_REV0U
 inline void StopAllSfx()
 {
+#if !RETRO_USE_ORIGINAL_CODE
+    LockAudioDevice();
+#endif
+
     for (int32 i = 0; i < CHANNEL_COUNT; ++i) {
         if (channels[i].state == CHANNEL_SFX) {
             MEM_ZERO(channels[i]);
@@ -106,6 +133,10 @@ inline void StopAllSfx()
             channels[i].state   = CHANNEL_IDLE;
         }
     }
+
+#if !RETRO_USE_ORIGINAL_CODE
+    UnlockAudioDevice();
+#endif
 }
 #endif
 
@@ -175,15 +206,5 @@ void ClearGlobalSfx();
 #endif
 
 } // namespace RSDK
-
-#if RETRO_AUDIODEVICE_XAUDIO
-#include "XAudio/XAudioDevice.hpp"
-#elif RETRO_AUDIODEVICE_NX
-#include "NX/NXAudioDevice.hpp"
-#elif RETRO_AUDIODEVICE_SDL2
-#include "SDL2/SDL2AudioDevice.hpp"
-#elif RETRO_AUDIODEVICE_OBOE
-#include "Oboe/OboeAudioDevice.hpp"
-#endif
 
 #endif
