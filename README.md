@@ -38,6 +38,7 @@ Currently, the only officially supported platforms are the ones listed above. Ho
 * ### [WebASM](https://github.com/heyjoeway/RSDKv5-Decompilation/tree/emscripten) by heyjoeway 
 * ### [New 3DS](https://github.com/SaturnSH2x2/RSDKv5-Decompilation/tree/3ds-main) by SaturnSH2x2
 * ### [Wii U](https://github.com/Radfordhound/RSDKv5-Decompilation) by Radfordhound
+* ### [Wii U](https://github.com/Clownacy/Sonic-Mania-Decompilation) by Clownacy
 * ### [Vita](https://github.com/SonicMastr/Sonic-Mania-Vita) by SonicMastr
 * #### and a [general optimization fork](https://github.com/smb123w64gb/RSDKv5-Decompilation) by smb123w64gb
 
@@ -51,11 +52,8 @@ A: Submit an issue in the issues tab and we _might_ fix it in the main branch. D
 ### Q: Is there a decompilation for RSDKv3 and/or RSDKv4 alone?
 A: There is! You can find RSDKv3 [here](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation) and RSDKv4 [here](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation).
 
-### Q: Will there be a decompilation for any other RSDK versions?
-A: No. This is the last decompilation from us. This project took about 1 and a half years to do, and with it completed, we're ready to move onto other endeavours rather than continue decompiling programs forever.
-
-### Q: Are there anymore decompilation projects in the works?
-A: Absolutely not. Between the last two and this one, we're done with decompiling, at least for the time being. Please do not expect any more decompilations from us, Sonic or otherwise!
+### Q: Are there anymore decompilation projects in the works, such as other RSDK versions?
+A: Absolutely not. This project took about 1 and a half years to do, and between the last two and this one, we're done with decompiling, at least for the time being. Please do not expect any more decompilations from us, Sonic or otherwise!
 
 # Special Thanks
 * [Chuli](https://github.com/MGRich) for leading ModAPI development, porting to other platforms, general decompilation assistance, helping me fix bugs, tweaking up my sometimes sloppy code and generally being really helpful and fun to work with on this project
