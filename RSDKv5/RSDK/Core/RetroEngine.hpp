@@ -93,7 +93,7 @@ enum GameRegions {
 #define RETRO_STANDARD (0)
 #define RETRO_MOBILE   (1)
 
-#define sprintf_s(x, _, ...) sprintf(x, __VA_ARGS__)
+#define sprintf_s(x, _, ...) snprintf(x, _, __VA_ARGS__)
 
 #if defined _WIN32
 #undef sprintf_s
@@ -565,8 +565,8 @@ struct RetroEngine {
     bool32 (*skipCallback)() = NULL;
 
     bool32 streamsEnabled = true;
-    float streamVolume    = 1.0;
-    float soundFXVolume   = 1.0;
+    float streamVolume    = 1.0f;
+    float soundFXVolume   = 1.0f;
 };
 
 extern RetroEngine engine;

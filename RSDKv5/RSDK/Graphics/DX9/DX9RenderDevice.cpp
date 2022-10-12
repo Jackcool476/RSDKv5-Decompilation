@@ -705,7 +705,7 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
 
     ShaderEntry *shader = &shaderList[shaderCount];
     shader->linear      = linear;
-    sprintf_s(shader->name, (int32)sizeof(shader->name), "%s", fileName);
+    sprintf_s(shader->name, sizeof(shader->name), "%s", fileName);
 
     const D3D_SHADER_MACRO defines[] = {
 #if RETRO_REV02
@@ -718,7 +718,7 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
 
 #if !RETRO_USE_ORIGINAL_CODE
     // Try to compile the vertex shader source if it exists
-    sprintf_s(fullFilePath, (int32)sizeof(fullFilePath), "Data/Shaders/DX9/%s.hlsl", fileName);
+    sprintf_s(fullFilePath, sizeof(fullFilePath), "Data/Shaders/DX9/%s.hlsl", fileName);
     InitFileInfo(&info);
     if (LoadFile(&info, fullFilePath, FMODE_RB)) {
         uint8 *fileData = NULL;
@@ -740,6 +740,8 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
         ID3DBlob *errorBlob  = nullptr;
         HRESULT result = D3DCompile(fileData, info.fileSize, fullFilePath, defines, NULL, "VSMain", "vs_3_0", flags, 0, &shaderBlob, &errorBlob);
 
+        RemoveStorageEntry((void**)&fileData);
+
         if (FAILED(result)) {
             if (errorBlob) {
                 PrintLog(PRINT_NORMAL, "ERROR COMPILING VERTEX SHADER: %s", (char *)errorBlob->GetBufferPointer());
@@ -749,7 +751,6 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
             if (shaderBlob)
                 shaderBlob->Release();
 
-            fileData = NULL;
             return;
         }
         else {
@@ -763,17 +764,15 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
                     shader->vertexShaderObject = NULL;
                 }
 
-                fileData = NULL;
                 return;
             }
         }
 
-        fileData = NULL;
     }
     else {
 #endif
         // if the vertex shader source doesn't exist, fall back and try to load the vertex shader bytecode
-        sprintf_s(fullFilePath, (int32)sizeof(fullFilePath), "Data/Shaders/CSO-DX9/%s.vso", fileName);
+        sprintf_s(fullFilePath, sizeof(fullFilePath), "Data/Shaders/CSO-DX9/%s.vso", fileName);
         InitFileInfo(&info);
         if (LoadFile(&info, fullFilePath, FMODE_RB)) {
             uint8 *fileData = NULL;
@@ -787,11 +786,11 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
                     shader->vertexShaderObject = NULL;
                 }
 
-                fileData = NULL;
+                RemoveStorageEntry((void**)&fileData);
                 return;
             }
 
-            fileData = NULL;
+            RemoveStorageEntry((void**)&fileData);
         }
 
 #if !RETRO_USE_ORIGINAL_CODE
@@ -800,7 +799,7 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
 
 #if !RETRO_USE_ORIGINAL_CODE
     // Try to compile the pixel shader source if it exists
-    sprintf_s(fullFilePath, (int32)sizeof(fullFilePath), "Data/Shaders/DX9/%s.hlsl", fileName);
+    sprintf_s(fullFilePath, sizeof(fullFilePath), "Data/Shaders/DX9/%s.hlsl", fileName);
     InitFileInfo(&info);
     if (LoadFile(&info, fullFilePath, FMODE_RB)) {
         uint8 *fileData = NULL;
@@ -822,6 +821,8 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
         ID3DBlob *errorBlob  = nullptr;
         HRESULT result = D3DCompile(fileData, info.fileSize, fullFilePath, defines, NULL, "PSMain", "ps_3_0", flags, 0, &shaderBlob, &errorBlob);
 
+        RemoveStorageEntry((void**)&fileData);
+
         if (FAILED(result)) {
             if (errorBlob) {
                 PrintLog(PRINT_NORMAL, "ERROR COMPILING PIXEL SHADER:\n%s", (char *)errorBlob->GetBufferPointer());
@@ -842,17 +843,14 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
                     shader->vertexShaderObject = NULL;
                 }
 
-                fileData = NULL;
                 return;
             }
         }
-
-        fileData = NULL;
     }
     else {
 #endif
         // if the pixel shader source doesn't exist, fall back and try to load the pixel shader bytecode
-        sprintf_s(fullFilePath, (int32)sizeof(fullFilePath), "Data/Shaders/CSO-DX9/%s.fso", fileName);
+        sprintf_s(fullFilePath, sizeof(fullFilePath), "Data/Shaders/CSO-DX9/%s.fso", fileName);
         InitFileInfo(&info);
         if (LoadFile(&info, fullFilePath, FMODE_RB)) {
             uint8 *fileData = NULL;
@@ -866,11 +864,11 @@ void RenderDevice::LoadShader(const char *fileName, bool32 linear)
                     shader->pixelShaderObject = NULL;
                 }
 
-                fileData = NULL;
+                RemoveStorageEntry((void**)&fileData);
                 return;
             }
 
-            fileData = NULL;
+            RemoveStorageEntry((void**)&fileData);
         }
 
 #if !RETRO_USE_ORIGINAL_CODE

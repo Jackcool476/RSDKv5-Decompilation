@@ -123,7 +123,7 @@ void RSDK::LoadStaticVariables(uint8 *classPtr, uint32 *hash, int32 readOffset)
     for (int32 i = 0; i < 32; i += 4) classHash[strPos++] = hexChars[(hash[2] >> i) & 0xF];
     for (int32 i = 0; i < 32; i += 4) classHash[strPos++] = hexChars[(hash[3] >> i) & 0xF];
 
-    sprintf_s(fullFilePath, (int32)sizeof(fullFilePath), "Data/Objects/Static/%s.bin", classHash);
+    sprintf_s(fullFilePath, sizeof(fullFilePath), "Data/Objects/Static/%s.bin", classHash);
 
     FileInfo info;
     InitFileInfo(&info);
@@ -902,7 +902,7 @@ void RSDK::ProcessObjectDrawLists()
 
                             if (entity->visible || (engine.showEntityInfo & 2)) {
                                 char buffer[0x100];
-                                sprintf_s(buffer, "%s\nx: %g\ny: %g", objectClassList[stageObjectIDs[entity->classID]].name,
+                                sprintf_s(buffer, sizeof(buffer), "%s\nx: %g\ny: %g", objectClassList[stageObjectIDs[entity->classID]].name,
                                           entity->position.x / 65536.0f, entity->position.y / 65536.0f);
 
                                 DrawDevString(buffer, FROM_FIXED(entity->position.x) - currentScreen->position.x,
