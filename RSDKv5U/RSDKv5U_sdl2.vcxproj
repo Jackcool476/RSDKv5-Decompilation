@@ -693,6 +693,12 @@
         <Message>copying SDL2 library DLL to the build directory. build should fail if it's not found</Message>
       </PostBuildEvent>
     </When>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>doing required library stuff</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -725,6 +731,10 @@
         <Message>copying SDL2 library DLL to the build directory. build should fail if it's not found</Message>
       </PostBuildEvent>
     </When>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll $(OutDir)</Command>
+      <Message>doing required library stuff</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
