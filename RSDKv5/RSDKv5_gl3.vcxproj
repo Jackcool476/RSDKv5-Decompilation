@@ -549,7 +549,7 @@
       <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)dependencies\gl3\glew\bin\Release\$(Platform)\glew32.dll" "$(OutDir)" </Command>
+      <Command>copy /Y "$(SolutionDir)\dependencies\GL3\glew32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>copying GLEW library DLL to the build directory. build should fail if it's not found</Message>
@@ -594,17 +594,18 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/;$(SolutionDir)RSDKv5/;$(SolutionDir)dependencies/gl3/glfw/include/;$(SolutionDir)dependencies/gl3/glew/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/windows/libtheora/win32/VS2010/$(Platform)/$(Configuration)/;$(SolutionDir)dependencies/windows/libogg/win32/VS2015/$(Platform)/$(Configuration)/;$(SolutionDir)dependencies/gl3/glfw/lib/;$(SolutionDir)dependencies/gl3/glfw/lib-vc2022/;$(SolutionDir)dependencies/gl3/glew/lib/Release/$(Platform)/;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32_x86.lib;glfw3_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)dependencies\gl3\glew\bin\Release\$(Platform)\glew32.dll" "$(OutDir)" </Command>
+      <Command>copy /Y "$(SolutionDir)\dependencies\GL3\glew32_x86.dll" "$(OutDir)\glew32.dll"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>copying GLEW library DLL to the build directory. build should fail if it's not found</Message>
@@ -630,11 +631,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir);$(SolutionDir)$(Platform)/$(Configuration);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32_x64.lib;glfw3_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)dependencies\gl3\glew\bin\Release\$(Platform)\glew32.dll" "$(OutDir)" </Command>
+      <Command>copy /Y "$(SolutionDir)\dependencies\GL3\glew32_x64.dll" "$(OutDir)\glew32.dll"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>copying GLEW library DLL to the build directory. build should fail if it's not found</Message>

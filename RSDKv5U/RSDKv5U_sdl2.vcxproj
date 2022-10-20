@@ -694,7 +694,7 @@
       </PostBuildEvent>
     </When>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll $(OutDir)</Command>
+      <Command>copy /Y "$(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>doing required library stuff</Message>
@@ -732,7 +732,7 @@
       </PostBuildEvent>
     </When>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll $(OutDir)</Command>
+      <Command>copy /Y "$(SolutionDir)$(Platform)\$(Configuration)\SDL2.dll" "$(OutDir)"</Command>
       <Message>doing required library stuff</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
