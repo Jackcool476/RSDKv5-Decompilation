@@ -601,7 +601,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration)/;$(SolutionDir)dependencies/windows/libogg/win32/VS2015/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32_x86.lib;glfw3_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -631,7 +631,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration)/;$(SolutionDir)dependencies/windows/libogg/win32/VS2015/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies/gl3/;$(SolutionDir)$(Platform)/$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>libogg.lib;libtheora_static.lib;winmm.lib;comctl32.lib;opengl32.lib;glew32_x64.lib;glfw3_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
