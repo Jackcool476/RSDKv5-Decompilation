@@ -4,9 +4,6 @@
 [submodule "dependencies/all/stb_vorbis"]
 	path = dependencies/all/stb_vorbis
 	url = https://github.com/nothings/stb
-[submodule "dependencies/windows/libogg"]
-	path = dependencies/windows/libogg
-	url = https://github.com/Jackcool476/libogg
 [submodule "dependencies/windows/libtheora"]
 	path = dependencies/windows/libtheora
 	url = https://github.com/xiph/theora
@@ -16,3 +13,6 @@
 [submodule "dependencies/gl3/glfw"]
 	path = dependencies/gl3/glfw
 	url = https://github.com/glfw/glfw
+[submodule "dependencies/windows/libogg"]
+	path = dependencies/windows/libogg
+	url = https://github.com/Jackcool476/libogg
