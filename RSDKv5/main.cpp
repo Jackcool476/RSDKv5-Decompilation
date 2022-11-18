@@ -26,6 +26,8 @@ extern "C" {
 void android_main(struct android_app *app);
 }
 
+#include <swappy/swappyGL_extra.h>
+
 void android_main(struct android_app *ap)
 {
     app                                 = ap;
@@ -36,11 +38,20 @@ void android_main(struct android_app *ap)
     JNISetup *jni = GetJNISetup();
     // we make sure we do it here so init can chill safely before any callbacks occur
     Paddleboat_init(jni->env, jni->thiz);
+    
+    SwappyGL_init(jni->env, jni->thiz);
+    if (RSDK::videoSettings.refreshRate)
+        SwappyGL_setSwapIntervalNS(1000000000L / RSDK::videoSettings.refreshRate);
+    else SwappyGL_setSwapIntervalNS(SWAPPY_SWAP_60FPS);
+    SwappyGL_setAutoSwapInterval(false);
+
     char buffer[0x200];
     jmethodID method = jni->env->GetMethodID(jni->clazz, "getBasePath", "()Ljava/lang/String;");
     auto ret         = jni->env->CallObjectMethod(jni->thiz, method);
-    strcpy(buffer, jni->env->GetStringUTFChars((jstring)ret, NULL));
-    RSDK::SKU::SetUserFileCallbacks(buffer, NULL, NULL);
+    if (ret) {
+        strcpy(buffer, jni->env->GetStringUTFChars((jstring)ret, NULL));
+        RSDK::SKU::SetUserFileCallbacks(buffer, NULL, NULL);
+    }
 
     GameActivity_setWindowFlags(app->activity,
                                 AWINDOW_FLAG_KEEP_SCREEN_ON | AWINDOW_FLAG_TURN_SCREEN_ON | AWINDOW_FLAG_LAYOUT_NO_LIMITS | AWINDOW_FLAG_FULLSCREEN
@@ -50,6 +61,7 @@ void android_main(struct android_app *ap)
     RSDK_main(0, NULL, (void *)RSDK::LinkGameLogic);
 
     Paddleboat_destroy(jni->env);
+    SwappyGL_destroy();
 }
 #else
 int32 main(int32 argc, char *argv[]) { return RSDK_main(argc, argv, (void *)RSDK::LinkGameLogic); }

@@ -10,9 +10,6 @@
 [submodule "dependencies/windows/SDL2"]
 	path = dependencies/windows/SDL2
 	url = https://github.com/libsdl-org/SDL
-[submodule "dependencies/gl3/glfw"]
-	path = dependencies/gl3/glfw
-	url = https://github.com/glfw/glfw
 [submodule "dependencies/windows/libogg"]
 	path = dependencies/windows/libogg
 	url = https://github.com/Jackcool476/libogg
