@@ -65,6 +65,11 @@ enum GameRegions {
 #undef __linux__
 #endif
 
+#ifdef _INTELLISENSE_ANDROID
+#undef _WIN32
+#undef _LIBCPP_MSVCRT_LIKE
+#endif
+
 #ifndef RETRO_USE_ORIGINAL_CODE
 #define RETRO_USE_ORIGINAL_CODE (0)
 #endif
@@ -494,8 +499,10 @@ enum GameRegions {
 
 #if !RETRO_REV0U
 #define ENGINE_VERSION (5)
+#define ENGINE_V_NAME "v5"
 #else
 #define ENGINE_VERSION (engine.version)
+#define ENGINE_V_NAME "v5U"
 #endif
 
 namespace RSDK

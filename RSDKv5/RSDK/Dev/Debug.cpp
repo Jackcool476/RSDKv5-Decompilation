@@ -86,13 +86,14 @@ void RSDK::PrintLog(int32 mode, const char *message, ...)
                 case PRINT_FATAL: as = ANDROID_LOG_FATAL; break;
                 default: break;
             }
-            __android_log_print(as, "RSDKv5", "%s", outputString);
+            auto* jni = GetJNISetup();
+            jni->env->CallVoidMethod(jni->thiz, writeLog, jni->env->NewStringUTF(outputString), as);
 #elif RETRO_PLATFORM == RETRO_SWITCH
             printf("%s", outputString);
 #endif
         }
 
-#if !RETRO_USE_ORIGINAL_CODE
+#if !RETRO_USE_ORIGINAL_CODE && RETRO_PLATFORM != RETRO_ANDROID
         FileIO *file = fOpen(BASE_PATH "log.txt", "a");
         if (file) {
             fWrite(&outputString, 1, strlen(outputString), file);
@@ -301,11 +302,7 @@ void RSDK::DevMenu_MainMenu()
     // Info Box
     int32 y = currentScreen->center.y - 80;
     DrawRectangle(currentScreen->center.x - 128, currentScreen->center.y - 84, 0x100, 0x30, 0x80, 0xFF, INK_NONE, true);
-#if RETRO_REV0U
-    DrawDevString("RETRO ENGINE v5U", currentScreen->center.x, y, ALIGN_CENTER, 0xF0F0F0);
-#else
-    DrawDevString("RETRO ENGINE v5", currentScreen->center.x, y, ALIGN_CENTER, 0xF0F0F0);
-#endif
+    DrawDevString("RETRO ENGINE " ENGINE_V_NAME, currentScreen->center.x, y, ALIGN_CENTER, 0xF0F0F0);
 
     y += 8;
     DrawDevString("Dev Menu", currentScreen->center.x, y, ALIGN_CENTER, 0xF0F0F0);
@@ -1750,7 +1747,7 @@ void RSDK::DevMenu_ModsMenu()
     int32 y = dy + 40;
     for (int32 i = 0; i < 8; ++i) {
         if (devMenu.scrollPos + i < modList.size()) {
-            DrawDevString(modList[(devMenu.scrollPos + i)].name.c_str(), currentScreen->center.x - 96, y, ALIGN_LEFT, selectionColors[i]);
+            DrawDevString(modList[(devMenu.scrollPos + i)].id.c_str(), currentScreen->center.x - 96, y, ALIGN_LEFT, selectionColors[i]);
             DrawDevString(modList[(devMenu.scrollPos + i)].active ? "Y" : "N", currentScreen->center.x + 96, y, ALIGN_RIGHT, selectionColors[i]);
 
             y += 8;
@@ -1849,6 +1846,10 @@ void RSDK::DevMenu_ModsMenu()
 #endif
         SaveMods();
         if (devMenu.modsChanged) {
+            DrawDevString("Reloading mods...", currentScreen->center.x, dy + 12, ALIGN_CENTER, 0xF08080);
+            // we do a little hacking
+            RenderDevice::CopyFrameBuffer();
+            RenderDevice::FlipScreen();
             ApplyModChanges();
         }
 #if RETRO_REV0U

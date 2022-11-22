@@ -21,6 +21,8 @@ struct JNISetup *GetJNISetup();
 
 typedef struct android_app android_app;
 extern android_app *app;
+extern jmethodID getFD;
+extern jmethodID writeLog;
 
 class GameActivity;
 class GameActivityKeyEvent;
@@ -28,7 +30,7 @@ class GameActivityKeyEvent;
 #define jnifunc(name, class, ...) JNICALL Java_org_rems_rsdkv5_##class##_##name(JNIEnv *env, jclass cls, __VA_ARGS__)
 #define jnifuncN(name, class) JNICALL Java_org_rems_rsdkv5_##class##_##name(JNIEnv *env, jclass cls)
 // the lone JNI func
-extern "C" JNIEXPORT void jnifunc(nativeOnTouch, RSDKv5, jint finger, jint action, jfloat x, jfloat y);
+extern "C" JNIEXPORT void jnifunc(nativeOnTouch, RSDK, jint finger, jint action, jfloat x, jfloat y);
 
 void AndroidCommandCallback(android_app *app, int32 cmd);
 bool AndroidKeyDownCallback(GameActivity *activity, const GameActivityKeyEvent *event);
