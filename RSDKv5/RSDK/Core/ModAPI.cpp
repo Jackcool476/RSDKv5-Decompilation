@@ -17,19 +17,25 @@ namespace fs = std::filesystem;
 bool fs::exists(fs::path path)
 {
     auto *jni = GetJNISetup();
-    return jni->env->CallBooleanMethod(jni->thiz, fsExists, jni->env->NewStringUTF(path.string().c_str()));
+    jbyteArray array = jni->env->NewByteArray(path.string().length());
+    jni->env->SetByteArrayRegion(array, 0, path.string().length(), (jbyte*)path.string().c_str());
+    return jni->env->CallBooleanMethod(jni->thiz, fsExists, array);
 }
 
 bool fs::is_directory(fs::path path)
 {
     auto *jni = GetJNISetup();
-    return jni->env->CallBooleanMethod(jni->thiz, fsIsDir, jni->env->NewStringUTF(path.string().c_str()));
+    jbyteArray array = jni->env->NewByteArray(path.string().length());
+    jni->env->SetByteArrayRegion(array, 0, path.string().length(), (jbyte*)path.string().c_str());
+    return jni->env->CallBooleanMethod(jni->thiz, fsIsDir, array);
 }
 
 fs::path_list fs::directory_iterator(fs::path path)
 {
     auto *jni = GetJNISetup();
-    return fs::path_list((jobjectArray)jni->env->CallObjectMethod(jni->thiz, fsDirIter, jni->env->NewStringUTF(path.string().c_str())));
+    jbyteArray array = jni->env->NewByteArray(path.string().length());
+    jni->env->SetByteArrayRegion(array, 0, path.string().length(), (jbyte*)path.string().c_str());
+    return fs::path_list((jobjectArray)jni->env->CallObjectMethod(jni->thiz, fsDirIter, array));
 }
 #endif
 
@@ -318,7 +324,7 @@ void DrawStatus(const char *str)
 #if RETRO_RENDERDEVICE_EGL
 // egl devices are slower in I/O so render more increments
 #define BAR_THRESHOLD (10.F)
-#define RENDER_COUNT  (50)
+#define RENDER_COUNT  (100)
 #else
 #define BAR_THRESHOLD (100.F)
 #define RENDER_COUNT  (100)
