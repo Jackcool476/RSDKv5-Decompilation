@@ -40,6 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtheora_static", "depende
 		{AFF27A26-C088-444B-BC2A-0BA94A02AFA7} = {AFF27A26-C088-444B-BC2A-0BA94A02AFA7}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RSDKv5-vk", "RSDKv5\RSDKv5_vk.vcxproj", "{268BB4CA-8A19-11ED-A1EB-0242AC120002}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -112,6 +114,14 @@ Global
 		{653F3841-3F26-49B9-AFCF-091DB4B67031}.Release|x64.Build.0 = Release|x64
 		{653F3841-3F26-49B9-AFCF-091DB4B67031}.Release|x86.ActiveCfg = Release|Win32
 		{653F3841-3F26-49B9-AFCF-091DB4B67031}.Release|x86.Build.0 = Release|Win32
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Debug|x64.ActiveCfg = Debug|x64
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Debug|x64.Build.0 = Debug|x64
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Debug|x86.ActiveCfg = Debug|Win32
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Debug|x86.Build.0 = Debug|Win32
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Release|x64.ActiveCfg = Release|x64
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Release|x64.Build.0 = Release|x64
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Release|x86.ActiveCfg = Release|Win32
+		{268BB4CA-8A19-11ED-A1EB-0242AC120002}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
