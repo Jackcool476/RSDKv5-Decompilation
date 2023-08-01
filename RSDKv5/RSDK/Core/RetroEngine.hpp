@@ -157,10 +157,6 @@ enum GameRegions {
 
 #define SCREEN_CENTERY (SCREEN_YSIZE / 2)
 
-#ifndef BASE_PATH
-#define BASE_PATH ""
-#endif
-
 // ============================
 // RENDER DEVICE BACKENDS
 // ============================
@@ -649,9 +645,11 @@ void InitEngine();
 void StartGameObjects();
 
 #if RETRO_USE_MOD_LOADER
-void LoadXMLObjects();
-void LoadXMLSoundFX();
-int32 LoadXMLStages(int32 mode, int32 gcListCount, int32 gcStageCount);
+void LoadGameXML(bool pal = false);
+void LoadXMLPalettes(const tinyxml2::XMLElement* gameElement);
+void LoadXMLObjects(const tinyxml2::XMLElement* gameElement);
+void LoadXMLSoundFX(const tinyxml2::XMLElement* gameElement);
+void LoadXMLStages(const tinyxml2::XMLElement* gameElement);
 #endif
 
 void LoadGameConfig();
