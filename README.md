@@ -1,3 +1,7 @@
+# Deprecation Notice
+This fork of the repository will no longer be updated as a new and improved version of my build guide is available [here](https://gamebanana.com/tuts/15254) that uses CMake. This repository will stay public for if anybody needs a way to build a Visual Studio version specifically for whatever reason.
+
+
 ![header](header.png?raw=true)
 
 A complete decompilation of Retro Engine v5 and v5Ultimate.
